@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { PlaylistsViewComponent } from './playlists/components/playlists-view/playlists-view.component';
 
 @NgModule({
   declarations: [

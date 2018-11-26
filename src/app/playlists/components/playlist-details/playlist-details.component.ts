@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Playlist } from 'src/app/model/Playlist';
 
 @Component({
   selector: 'app-playlist-details',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playlist-details.component.scss']
 })
 export class PlaylistDetailsComponent implements OnInit {
+
+  playlist: Playlist = {
+    id:123,
+    name:'Hits 2018',
+    favourite:true,
+    color:'#ff00ff'
+  }
 
   constructor() { }
 
