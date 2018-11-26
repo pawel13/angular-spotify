@@ -2,11 +2,7 @@
   playlist-details works!
 </p>
 
-<ng-template [ngIf]="mode == 'show'" [ngIfThen]="showRef" [ngIfElse]="editRef">
-
-</ng-template>
-<ng-template #showRef>
-<div [hidden]="mode == 'edit'">
+<div *ngIf="mode == 'show'">
 <dl >
   <dt [title]="playlist.name" [attr.data-id]="playlist.id">Name</dt>
   <dd>{{ playlist.name }}</dd>
@@ -22,10 +18,8 @@
 
 </dl>
 </div>
-</ng-template>
 
-<ng-template #editRef>
-<div [hidden]="mode != 'edit'">
+<div *ngIf="mode == 'edit'">
 <div class="form-group"><label>Name: </label>
   <input type="text" class="form-control"  [(ngModel)] = "playlist.name"
   >
@@ -43,7 +37,7 @@
 <input type="button" value="Save" class="btn btn-success" (click)="save()">
 
 </div>
-</ng-template>
+
 <template id="tpl">
   <b> Ala ma kota </b>
 </template>
