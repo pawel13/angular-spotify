@@ -3,10 +3,22 @@
 </p>
 
 <dl >
-  <dt>Name</dt>
+  <dt [title]="playlist.name" [attr.data-id]="playlist.id">Name</dt>
   <dd>{{ playlist.name }}</dd>
   <dt>Favourite</dt>
   <dd>{{ playlist.favourite ? 'Yes' : 'No' }}</dd>
   <dt>Color</dt>
-  <dd [style.background-color]="playlist.color">{{ playlist.color }}</dd>
+  <dd [style.background-color]="playlist.color" [ngStyle]="{
+    color: '#fafafa',
+    'fontSize.px': 12
+  }">{{ playlist.color }}</dd>
+
 </dl>
+
+
+<div>
+<div class="form-group"><label>Name: </label><input type="text" class="form-control"></div>
+<div class="form-group"><label>Favourite: </label><input type="checkbox"></div>
+<div class="form-group"><label>Color: </label><input type="color"></div>
+
+</div>
