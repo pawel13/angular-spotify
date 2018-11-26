@@ -1,5 +1,9 @@
-<p>
-  items-list works!
-</p>
+<div class="list-group">
+<ng-template ngFor [ngForOf]="playlists" let-playlist let-i="index">
+    <div class="list-group-item">{{i+1}}. {{playlist.name}}</div>
+</ng-template>
+</div>
+  
+
 
 <app-list-item></app-list-item>
