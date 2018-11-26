@@ -8,8 +8,6 @@ import { Playlist } from 'src/app/model/Playlist';
 })
 export class ItemsListComponent implements OnInit {
 
-  constructor() { }
-
   playlists: Playlist[] = [
     {
     id:1,
@@ -30,6 +28,16 @@ export class ItemsListComponent implements OnInit {
     color:'#df00ff'
   }
 ];
+
+  constructor() { 
+    setInterval(() => { this.playlists = JSON.parse(JSON.stringify(this.playlists))}, 500);
+
+  }
+
+
+trackFn(index:number, item:Playlist){
+  return item.id;
+}
   ngOnInit() {
   }
 
