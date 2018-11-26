@@ -3,8 +3,6 @@
 </p>
 
 
-
-
 <ng-container [ngSwitch]="mode">
 <div *ngSwitchCase="'show'">
 <dl >
@@ -22,8 +20,6 @@
 
 </dl>
 </div>
-
-
 
 <div *ngSwitchCase="'edit'">
 <div class="form-group"><label>Name: </label>
@@ -43,11 +39,7 @@
 <input type="button" value="Save" class="btn btn-success" (click)="save()">
 
 </div>
-
-
 </ng-container>
-
-
 
 
 <template id="tpl">

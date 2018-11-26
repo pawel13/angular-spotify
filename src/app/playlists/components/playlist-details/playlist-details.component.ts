@@ -7,7 +7,7 @@ import { Playlist } from 'src/app/model/Playlist';
   styleUrls: ['./playlist-details.component.scss']
 })
 export class PlaylistDetailsComponent implements OnInit {
-
+  
   playlist: Playlist = {
     id:123,
     name:'Hits 2018',
