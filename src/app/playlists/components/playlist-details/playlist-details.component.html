@@ -1,4 +1,12 @@
 <p>
   playlist-details works!
 </p>
-{{ playlist | json }}
+
+<dl >
+  <dt>Name</dt>
+  <dd>{{ playlist.name }}</dd>
+  <dt>Favourite</dt>
+  <dd>{{ playlist.favourite ? 'Yes' : 'No' }}</dd>
+  <dt>Color</dt>
+  <dd [style.background-color]="playlist.color">{{ playlist.color }}</dd>
+</dl>
