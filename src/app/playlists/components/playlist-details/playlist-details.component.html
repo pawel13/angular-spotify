@@ -17,8 +17,8 @@
 
 
 <div>
-<div class="form-group"><label>Name: </label><input type="text" class="form-control"></div>
-<div class="form-group"><label>Favourite: </label><input type="checkbox"></div>
-<div class="form-group"><label>Color: </label><input type="color"></div>
+<div class="form-group"><label>Name: </label><input type="text" class="form-control" [value] = "playlist.name"></div>
+<div class="form-group"><label>Favourite: </label><input type="checkbox" [checked]="playlist.favourite"></div>
+<div class="form-group"><label>Color: </label><input type="color" value="playlist.color"></div>
 
 </div>
