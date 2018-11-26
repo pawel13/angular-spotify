@@ -20,4 +20,15 @@ export class PlaylistDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  edit(){
+    console.log("edit");
+  }
+
+  cancel(){
+    console.log("cancel");
+  }
+
+  save(){
+    console.log("save");
+  }
 }
