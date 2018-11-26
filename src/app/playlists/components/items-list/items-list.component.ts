@@ -29,8 +29,10 @@ export class ItemsListComponent implements OnInit {
   }
 ];
 
+  selected: Playlist;
+
   constructor() { 
-    setInterval(() => { this.playlists = JSON.parse(JSON.stringify(this.playlists))}, 500);
+    // setInterval(() => { this.playlists = JSON.parse(JSON.stringify(this.playlists))}, 500);
 
   }
 
