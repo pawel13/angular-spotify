@@ -27,12 +27,12 @@ export class PlaylistDetailsComponent implements OnInit {
   }
 
   cancel(){
-    this.mode = "cancel";
+    this.mode = "show";
     console.log("cancel");
   }
 
   save(){
-    this.mode = "save";
+    this.mode = "show";
     console.log("save");
   }
 }
