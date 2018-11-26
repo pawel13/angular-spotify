@@ -7,15 +7,11 @@ import { Playlist } from 'src/app/model/Playlist';
   styleUrls: ['./playlist-details.component.scss']
 })
 export class PlaylistDetailsComponent implements OnInit {
-  @Input()
-  playlist: Playlist= {
-    id:123,
-    name:'Hits 2018',
-    favourite:true,
-    color:'#ff00ff'
-  }
+  
+  @Input() // ===  @Input('playlist')
+  playlist: Playlist;
 
-  constructor() { }
+  constructor() { } 
 
   ngOnInit() {
   }

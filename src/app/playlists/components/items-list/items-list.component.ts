@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Playlist } from 'src/app/model/Playlist';
 
 @Component({
@@ -11,16 +11,23 @@ export class ItemsListComponent implements OnInit {
   playlists: Playlist[];
   selected: Playlist;
 
+  selectedChange = new EventEmitter();
+
   constructor() { 
     // setInterval(() => { this.playlists = JSON.parse(JSON.stringify(this.playlists))}, 500);
 
   }
-
+  ngOnInit() {
+  }
+  select(playlist:Playlist){
+    this.selected = playlist;
+    this.selectedChange.emit(playlist);
+  }
 
 trackFn(index:number, item:Playlist){
   return item.id;
 }
-  ngOnInit() {
-  }
+
+
 
 }

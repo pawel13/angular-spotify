@@ -2,7 +2,7 @@
 
   <div class="list-group-item"  
     [class.active]="selected?.id == playlist.id"
-    (click)="selected = playlist"
+    (click)="select(playlist)"
     *ngFor="let playlist of playlists; index as i; trackBy trackFn">
     {{i+1}}. {{playlist.name}}
   </div>
