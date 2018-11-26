@@ -9,6 +9,8 @@ import { Playlist } from 'src/app/model/Playlist';
 export class ItemsListComponent implements OnInit {
   @Input('items')
   playlists: Playlist[];
+  
+  @Input()
   selected: Playlist;
 
   @Output()
