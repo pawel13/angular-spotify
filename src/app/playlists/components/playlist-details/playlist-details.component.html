@@ -1,7 +1,7 @@
 <p>
   playlist-details works!
 </p>
-
+<div [hidden]="mode == 'edit'">
 <dl >
   <dt [title]="playlist.name" [attr.data-id]="playlist.id">Name</dt>
   <dd>{{ playlist.name }}</dd>
@@ -13,12 +13,13 @@
     'fontSize.px': 12
   }">{{ playlist.color }}</dd>
   
-  <input type="button" value="Edit" class="btn btn-info">
+  <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
 
 </dl>
+</div>
 
 
-<div>
+<div [hidden]="mode != 'edit'">
 <div class="form-group"><label>Name: </label>
   <input type="text" class="form-control"  [(ngModel)] = "playlist.name"
   >
@@ -32,7 +33,7 @@
 <div class="form-group"><label>Color: </label><input type="color" [(ngModel)]="playlist.color">
 </div>
 
-<input type="button" value="Cancel" class="btn btn-danger">
-<input type="button" value="Save" class="btn btn-success">
+<input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
+<input type="button" value="Save" class="btn btn-success" (click)="save()">
 
 </div>

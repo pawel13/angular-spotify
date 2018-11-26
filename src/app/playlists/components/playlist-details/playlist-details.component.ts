@@ -19,16 +19,20 @@ export class PlaylistDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+  mode = "show";
 
   edit(){
+    this.mode = "edit";
     console.log("edit");
   }
 
   cancel(){
+    this.mode = "cancel";
     console.log("cancel");
   }
 
   save(){
+    this.mode = "save";
     console.log("save");
   }
 }
