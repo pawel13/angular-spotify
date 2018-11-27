@@ -27,7 +27,8 @@ export class PlaylistDetailsComponent implements OnInit {
     console.log("cancel");
   }
 
-  save(){
+  save(ngRef){
+    console.log(ngRef.value);
     this.mode = "show";
     console.log("save");
   }
