@@ -1,13 +1,31 @@
-import { Directive, ElementRef, Input, OnInit, OnChanges, DoCheck, OnDestroy, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, OnChanges, DoCheck, OnDestroy, Renderer2, SimpleChange, SimpleChanges, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]'
+  selector: '[appHighlight]',
+/*   host: {
+    "[style.color]": "color"
+  } */
 })
 export class HighlightDirective implements OnInit, OnChanges, DoCheck, OnDestroy {
-
+  active = false;
 
   @Input('appHighlight')
   color: string;
+
+  @HostBinding("style.color")
+  get currentColor(){
+    return this.active ? this.color : "";
+  }
+
+  @HostListener("mouseenter", ['$event.x', '$event.y'])
+  activate(x:number, y:number){
+    this.active = true;
+  }
+  
+  @HostListener("mouseleave")
+  deactivate(){
+    this.active = false;
+  }
 
   constructor(private elem: ElementRef<HTMLElement>, 
     private renderer: Renderer2) { 
