@@ -3,7 +3,9 @@
   <div class="list-group-item"  
     [class.active]="selected?.id == playlist.id"
     (click)="select(playlist)"
-    [style.border-left-color]= "playlist.color"
+    (mouseenter)="hover = playlist"
+    (mouseleave)="hover = null"
+    [style.border-left-color]= "hover == playlist ? playlist.color : ''"
     *ngFor="let playlist of playlists; index as i; trackBy trackFn">
       {{i+1}}. {{playlist.name}}
   </div>

@@ -7,6 +7,8 @@ import { Playlist } from 'src/app/model/Playlist';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
+  hover: Playlist;
+  
   @Input('items')
   playlists: Playlist[];
   
