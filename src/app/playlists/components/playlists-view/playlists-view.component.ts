@@ -35,4 +35,13 @@ export class PlaylistsViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  save(draft:Playlist){
+    const index = this.playlists.findIndex( p => p.id === draft.id);
+    if(index !== -1){
+      this.playlists.splice(index,1,draft);
+    }
+    console.log('draft in view', draft);
+  }
+
+
 }

@@ -1,6 +1,3 @@
-<p>
-  playlist-details works!
-</p>
 
 
 <ng-container [ngSwitch]="mode">
@@ -22,7 +19,8 @@
 </div>
 
 <form *ngSwitchCase="'edit'" #formRef="ngForm" (ngSubmit)="save(formRef)">
-<div class="form-group"><label>Name: </label>
+<div class="form-group">
+  <label>Name: </label>
   <input type="text" class="form-control"  [ngModel] = "playlist.name"
   name = "name"
   #nameRef="ngModel"
@@ -30,19 +28,22 @@
   {{nameRef.value}}
 </div>
 
-<div class="form-group"><label>Favourite: </label>
+<div class="form-group">
+  <label>Favourite: </label>
   <input type="checkbox" [ngModel]="playlist.favourite"
   name = "favourite"
   >
 </div>
 
-<div class="form-group"><label>Color: </label><input type="color" 
+<div class="form-group">
+  <label>Color: </label>
+  <input type="color" 
   name = "color"
   [ngModel]="playlist.color">
 </div>
 
 <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
-<input type="submit" value="Save" class="btn btn-success" (click)="save(nameRef)">
+<input type="submit" value="Save" class="btn btn-success">
 
 </form>
 </ng-container>

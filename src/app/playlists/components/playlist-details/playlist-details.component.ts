@@ -30,10 +30,11 @@ export class PlaylistDetailsComponent implements OnInit {
   }
 
   save(ngRef){
+
     // const draft:Partial<Playlist> = ngRef.value;
     const draft:Pick<Playlist, 'name' | 'favourite' | 'color'> = ngRef.value;
     console.log('draft', draft);
-    const playlist = {
+    const playlist = { // local copy
       // name: this.playlist.name,
       // favourite: this.playlist.favourite,
       // color: this.playlist.color,
@@ -41,7 +42,7 @@ export class PlaylistDetailsComponent implements OnInit {
       // favourite: draft.favourite,
       // color: draft.color,
       ...this.playlist,
-      ...draft
+      ...draft // draft overwrites what is unpacked from this.playlist
     }
     console.log('playlist', playlist);
     this.playlistChange.emit(playlist);

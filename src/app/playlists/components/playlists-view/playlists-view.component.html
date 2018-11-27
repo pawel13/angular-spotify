@@ -1,6 +1,4 @@
-<p>
-  playlists-view works!
-</p>
+
 <div class="row">
   <div class="col">
       <app-items-list [items]="playlists"
@@ -9,7 +7,9 @@
   </div>
   <div class="col">
       <app-playlist-details 
-      [playlist]="selected"></app-playlist-details>
+      [playlist]="selected"
+      (playlistChange)="save($event)"
+      ></app-playlist-details>
   </div>
 </div>
 
