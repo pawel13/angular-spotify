@@ -1,55 +1,56 @@
-
-
 <ng-container [ngSwitch]="mode">
 
   <app-card>
-    Ala lubi placki
-  </app-card>
-<div *ngSwitchCase="'show'">
-<dl >
-  <dt [title]="playlist.name" [attr.data-id]="playlist.id">Name</dt>
-  <dd>{{ playlist.name }}</dd>
-  <dt>Favourite</dt>
-  <dd>{{ playlist.favourite ? 'Yes' : 'No' }}</dd>
-  <dt>Color</dt>
-  <dd [style.background-color]="playlist.color" [ngStyle]="{
+    <ng-container class="title">
+      {{playlist.name}}
+      <span class="close float-right">&times;</span>
+    </ng-container>
+
+    <div *ngSwitchCase="'show'">
+      <dl>
+        <dt [title]="playlist.name" [attr.data-id]="playlist.id">Name</dt>
+        <dd>{{ playlist.name }}</dd>
+        <dt>Favourite</dt>
+        <dd>{{ playlist.favourite ? 'Yes' : 'No' }}</dd>
+        <dt>Color</dt>
+        <dd [style.background-color]="playlist.color" [ngStyle]="{
     color: '#fafafa',
     'fontSize.px': 12
-  }">{{ playlist.color }}</dd>
-  
-  <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
+  }">{{
+          playlist.color }}</dd>
 
-</dl>
-</div>
 
-<form *ngSwitchCase="'edit'" #formRef="ngForm" (ngSubmit)="save(formRef)">
-<div class="form-group">
-  <label>Name: </label>
-  <input type="text" class="form-control"  [ngModel] = "playlist.name"
-  name = "name"
-  #nameRef="ngModel"
-  >
-  {{nameRef.value}}
-</div>
 
-<div class="form-group">
-  <label>Favourite: </label>
-  <input type="checkbox" [ngModel]="playlist.favourite"
-  name = "favourite"
-  >
-</div>
+      </dl>
+      <ng-container ngProjectAs="footer">
+        <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
+      </ng-container>
+    </div>
+  </app-card>
+ 
 
-<div class="form-group">
-  <label>Color: </label>
-  <input type="color" 
-  name = "color"
-  [ngModel]="playlist.color">
-</div>
 
-<input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
-<input type="submit" value="Save" class="btn btn-success">
+  <form *ngSwitchCase="'edit'" #formRef="ngForm" (ngSubmit)="save(formRef)">
+    <div class="form-group">
+      <label>Name: </label>
+      <input type="text" class="form-control" [ngModel]="playlist.name" name="name" #nameRef="ngModel">
+      {{nameRef.value}}
+    </div>
 
-</form>
+    <div class="form-group">
+      <label>Favourite: </label>
+      <input type="checkbox" [ngModel]="playlist.favourite" name="favourite">
+    </div>
+
+    <div class="form-group">
+      <label>Color: </label>
+      <input type="color" name="color" [ngModel]="playlist.color">
+    </div>
+
+    <input type="button" value="Cancel" class="btn btn-danger" (click)="cancel()">
+    <input type="submit" value="Save" class="btn btn-success">
+
+  </form>
 </ng-container>
 
 
