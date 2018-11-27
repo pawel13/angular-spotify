@@ -18,7 +18,7 @@ export class PlaylistsViewComponent implements OnInit {
     id:2,
     name:'Hits 2017',
     favourite:false,
-    color:'#0faa0ff'
+    color:'#0faa0f'
   },
   {
     id:3,
