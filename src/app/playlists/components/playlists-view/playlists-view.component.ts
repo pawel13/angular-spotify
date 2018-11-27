@@ -39,6 +39,7 @@ export class PlaylistsViewComponent implements OnInit {
     const index = this.playlists.findIndex( p => p.id === draft.id);
     if(index !== -1){
       this.playlists.splice(index,1,draft);
+      this.selected = draft;
     }
     console.log('draft in view', draft);
   }
