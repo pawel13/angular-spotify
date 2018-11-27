@@ -30,8 +30,9 @@ export class PlaylistDetailsComponent implements OnInit {
   }
 
   save(ngRef){
-    const draft = ngRef.value;
-    console.log(draft);
+    // const draft:Partial<Playlist> = ngRef.value;
+    const draft:Pick<Playlist, 'name' | 'favourite' | 'color'> = ngRef.value;
+    console.log('draft', draft);
     const playlist = {
       // name: this.playlist.name,
       // favourite: this.playlist.favourite,
@@ -42,7 +43,7 @@ export class PlaylistDetailsComponent implements OnInit {
       ...this.playlist,
       ...draft
     }
-    console.log(playlist);
+    console.log('playlist', playlist);
     this.playlistChange.emit(playlist);
     this.mode = "show";
     console.log("save");
