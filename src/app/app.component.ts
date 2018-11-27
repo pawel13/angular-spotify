@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular-opi';
   counter = 0;
-
+  hide = false;
   constructor(){
     setInterval( () => {
       this.counter++;

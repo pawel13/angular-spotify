@@ -18,7 +18,14 @@
         
         
           <app-playlists-view></app-playlists-view>
-        </div> 
+          
+          <button (click)="hide = !hide"> Toggle {{ hide }} </button>
+          
+          <ng-template [appUnless]="hide" let-m="message">
+          <div>
+            <p> Ala ma {{ m }} </p>
+          </div> 
+      </ng-template>
 
       </div> 
 
