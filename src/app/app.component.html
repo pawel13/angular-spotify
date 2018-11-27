@@ -22,7 +22,7 @@
           <button (click)="hide = !hide"> Toggle {{ hide }} </button>
           
           <ng-template [appUnless]="hide" let-m="message">
-          <div>
+          <div *appUnless="hide; let m = 'message'">
             <p> Ala ma {{ m }} </p>
           </div> 
       </ng-template>
