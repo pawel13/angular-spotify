@@ -13,7 +13,7 @@ export class TabComponent implements OnInit {
 
   @HostBinding("class.card")
   anything = true;
-
+  
   open = false;
 
   toggle(){
