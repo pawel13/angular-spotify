@@ -8,15 +8,13 @@
         <h1>
           Welcome to {{ title }}!
         </h1>
-        <p>
-          {{ data.getMessage('aa')}}
 
-        </p>
+          <app-tabs>
+            <app-tab title="Placki A">Placki A</app-tab>
+            <app-tab title="Placki B">Placki B</app-tab>
+            <app-tab title="Placki C">Placki C</app-tab>
+          </app-tabs>
 
-        <p>
-          {{ counter < 100 ? 'tylko ' + counter : counter }} </p> 
-        
-        
           <app-playlists-view></app-playlists-view>
           
           <button (click)="hide = !hide"> Toggle {{ hide }} </button>
