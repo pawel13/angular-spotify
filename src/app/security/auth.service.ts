@@ -32,9 +32,15 @@ export class AuthService {
   }
 
   getToken(){
-    if(!this.token){
-      this.authorize()
+    if(!this.token && location.hash){
+      const params = new HttpParams({
+        fromString: location.hash
+      });
+      this.token = params.get('#access_token') || '';
     }
+    if(!this.token){
+      this.authorize();
+    }    
     return this.token;
   }
 

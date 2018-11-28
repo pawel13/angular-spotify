@@ -9,9 +9,9 @@ export const environment = {
   api_url: "https://api.spotify.com/v1/search",
   authConfig: {
     url: 'https://accounts.spotify.com/authorize',
-    client_id: '',
+    client_id: '6be7e17dcf3a4ce8a9dc8387a10d93bd',
     response_type: 'token',
-    redirect_uri: 'https://localhost:4200'
+    redirect_uri: 'http://localhost:4200/',
   } as AuthConfig
 };
 

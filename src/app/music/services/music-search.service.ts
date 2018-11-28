@@ -1,6 +1,7 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { Album } from 'src/app/model/Album';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/security/auth.service';
 
 export const SEARCH_URL = new InjectionToken('Search API Url');
 
@@ -26,30 +27,32 @@ export class MusicSearchService {
 ];
   constructor(
     @Inject(SEARCH_URL) private search_api_url: string,
-    private http: HttpClient
+    private http: HttpClient,
+    private auth:AuthService
     ) { }
 
     getAlbums(): Album[] {
       const request = this.http.get(this.search_api_url, {
         headers: {
-          Authorization: 'Bearer abcd'
-        },
+          Authorization: 'Bearer ' + this.auth.getToken()
+         },
         params:{
           type: 'album',
           q: 'batman'
 
-        },
+        }
         // observe: 'response',
-        reportProgress: true,
-        responseType: 'arraybuffer',
-        withCredentials: true
+        // reportProgress: true,
+        // responseType: 'arraybuffer',
+        //withCredentials: true
 
       })
-      request.subscribe(resp => console.log(resp));
-      request.subscribe(resp => console.log(resp));
-      request.subscribe(resp => console.log(resp));
+      request.subscribe(resp => {
+          console.log('albums: ', resp);
+          this.albums = resp['albums'].items;
+      });
 
-      console.log('jestem tu');
+      console.log(this.albums);
       return this.albums;
     }
 }
