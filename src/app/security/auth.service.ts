@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 
 export class AuthConfig {
   url: string;
@@ -14,10 +15,20 @@ export class AuthService {
 
   token = "";
 
-  constructor() { }
+  constructor(private config: AuthConfig) { }
 
   authorize(){
-
+    const {
+      client_id, redirect_uri, response_type, url
+    } = this.config;
+    const params = new HttpParams({
+      fromObject:{
+        client_id,
+        redirect_uri,
+        response_type
+      }
+    })
+    console.log(`${url}?${params.toString()}`);
   }
 
   getToken(){
