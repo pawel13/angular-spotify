@@ -7,6 +7,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
 import { PlaylistsViewComponent } from './playlists/components/playlists-view/playlists-view.component';
 import { SharedModule } from './shared/shared.module';
 import { MusicModule } from './music/music.module';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MusicModule } from './music/music.module';
     AppRoutingModule,
     PlaylistsModule,
     SharedModule,
-    MusicModule
+    MusicModule,
+    SecurityModule
   ],
   providers: [],
   bootstrap: [AppComponent]

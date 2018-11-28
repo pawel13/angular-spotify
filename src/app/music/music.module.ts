@@ -8,12 +8,14 @@ import { AlbumsGridComponent } from './components/albums-grid/albums-grid.compon
 import { AlbumsCardComponent } from './components/albums-card/albums-card.component';
 import { environment } from 'src/environments/environment';
 import { SEARCH_URL } from './services/music-search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumsCardComponent],
   imports: [
     CommonModule,
-    MusicRoutingModule
+    MusicRoutingModule,
+    HttpClientModule
   ],
   exports: [MusicSearchComponent],
   providers: [
