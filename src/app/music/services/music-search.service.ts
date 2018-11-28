@@ -1,5 +1,5 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { Album } from 'src/app/model/Album';
+import { Album, AlbumsResponse } from 'src/app/model/Album';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/security/auth.service';
 
@@ -32,7 +32,7 @@ export class MusicSearchService {
     ) { }
 
     getAlbums() {
-      return this.http.get(this.search_api_url, {
+      return this.http.get<AlbumsResponse>(this.search_api_url, {
         headers: {
           Authorization: 'Bearer ' + this.auth.getToken()
          },
@@ -46,6 +46,12 @@ export class MusicSearchService {
         // responseType: 'arraybuffer',
         //withCredentials: true
 
-      });
+      }).pipe(
+        pluck<AlbumsResponse, Album[]>("albums","items")
+          // map(resp => resp.albums.items)
+        );
+      
     }
 }
+
+import { map, pluck } from 'rxjs/operators'
