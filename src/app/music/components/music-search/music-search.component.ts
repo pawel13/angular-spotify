@@ -16,13 +16,13 @@ export class MusicSearchComponent implements OnInit {
 
   ngOnInit() {
     this.service.getAlbums()
-      .subscribe((resp:any) => 
+      .subscribe((albums:any) => 
       //onNext
       {
-        this.albums = resp.albums.items;
+        this.albums = albums;
       }, 
       //onError
-      error => console.log(error.error.error.message),
+      error => console.log(error.message),
       //onComplete
       () => { console.log('complete'); }
       );

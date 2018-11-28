@@ -1,6 +1,6 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { Album, AlbumsResponse } from 'src/app/model/Album';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from 'src/app/security/auth.service';
 
 export const SEARCH_URL = new InjectionToken('Search API Url');
@@ -38,7 +38,7 @@ export class MusicSearchService {
          },
         params:{
           type: 'album',
-          q: 'nicolas cage'
+          q: 'batman'
 
         }
         // observe: 'response',
@@ -50,12 +50,16 @@ export class MusicSearchService {
         pluck<AlbumsResponse, Album[]>("albums","items")
           // map(resp => resp.albums.items)
           , catchError((err,caught)=>{
-            return empty();
+
+            if(err instanceof HttpErrorResponse && err.status == 401){
+              this.auth.authorize();
+            }
+            return throwError(new Error(err.error.error.message));
           })
         );
       
     }
 }
 
-import { map, pluck, catchError } from 'rxjs/operators'
-import { empty } from 'rxjs';
+import { map, pluck, catchError, throwIfEmpty } from 'rxjs/operators'
+import { empty, throwError } from 'rxjs';
