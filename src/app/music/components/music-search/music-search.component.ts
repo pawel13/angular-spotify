@@ -8,15 +8,8 @@ import { Album } from 'src/app/model/Album';
 })
 export class MusicSearchComponent implements OnInit {
 
-  albums: Album[] = [
-      {
-        id: '123',
-        name: 'Album test',
-        images: [
-          {url: 'https://www.placecage.com/gif/200/300'}
-        ]
-      }
-  ];
+  albums: Album[];
+
   constructor() { }
 
 

@@ -6,6 +6,7 @@ import { MusicSearchComponent } from './components/music-search/music-search.com
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { AlbumsGridComponent } from './components/albums-grid/albums-grid.component';
 import { AlbumsCardComponent } from './components/albums-card/albums-card.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumsCardComponent],
@@ -13,6 +14,12 @@ import { AlbumsCardComponent } from './components/albums-card/albums-card.compon
     CommonModule,
     MusicRoutingModule
   ],
-  exports: [MusicSearchComponent]
+  exports: [MusicSearchComponent],
+  providers: [
+    {
+      provide: "SEARCH_URL",
+      useValue: environment.api_url
+    }
+  ]
 })
 export class MusicModule { }
