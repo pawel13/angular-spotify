@@ -35,7 +35,7 @@ export class MusicSearchService {
       return this.http.get<AlbumsResponse>(this.search_api_url,{
         params:{
           type: 'album',
-          q: 'batman'
+          q: 'nicolas cage'
         }
         // observe: 'response',
         // reportProgress: true,
