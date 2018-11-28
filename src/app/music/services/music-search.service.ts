@@ -31,11 +31,11 @@ export class MusicSearchService {
     private auth:AuthService
     ) { }
 
-    getAlbums() {
+    getAlbums(query = "batman") {
       return this.http.get<AlbumsResponse>(this.search_api_url,{
         params:{
           type: 'album',
-          q: 'nicolas cage'
+          q: query
         }
         // observe: 'response',
         // reportProgress: true,

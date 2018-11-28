@@ -13,20 +13,22 @@ export class MusicSearchComponent implements OnInit {
 
   constructor(private service: MusicSearchService) { }
 
+  search(query: string){
+    this.service.getAlbums(query)
+    .subscribe((albums:any) => 
+    //onNext
+    {
+      this.albums = albums;
+    }, 
+    //onError
+    error => console.log(error.message),
+    //onComplete
+    () => { console.log('complete'); }
+    );
+  }
 
   ngOnInit() {
-    this.service.getAlbums()
-      .subscribe((albums:any) => 
-      //onNext
-      {
-        this.albums = albums;
-      }, 
-      //onError
-      error => console.log(error.message),
-      //onComplete
-      () => { console.log('complete'); }
-      );
-    console.log(this.albums)
+
   }
 
 }
