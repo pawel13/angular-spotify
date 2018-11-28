@@ -16,8 +16,11 @@ export class MusicSearchComponent implements OnInit {
 
   ngOnInit() {
     this.service.getAlbums()
-      .subscribe((resp:any) =>
-        this.albums = resp.albums.items);
+      .subscribe((resp:any) => {
+        this.albums = resp.albums.items;
+      }, error => console.log(error.error.error.message),
+      () => { console.log('complete'); }
+      );
     console.log(this.albums)
   }
 

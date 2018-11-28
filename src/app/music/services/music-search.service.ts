@@ -38,7 +38,7 @@ export class MusicSearchService {
          },
         params:{
           type: 'album',
-          q: 'batman'
+          q: 'nicolas cage'
 
         }
         // observe: 'response',
