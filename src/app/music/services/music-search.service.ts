@@ -31,8 +31,8 @@ export class MusicSearchService {
     private auth:AuthService
     ) { }
 
-    getAlbums(): Album[] {
-      const request = this.http.get(this.search_api_url, {
+    getAlbums() {
+      return this.http.get(this.search_api_url, {
         headers: {
           Authorization: 'Bearer ' + this.auth.getToken()
          },
@@ -46,13 +46,6 @@ export class MusicSearchService {
         // responseType: 'arraybuffer',
         //withCredentials: true
 
-      })
-      request.subscribe(resp => {
-          console.log('albums: ', resp);
-          this.albums = resp['albums'].items;
       });
-
-      console.log(this.albums);
-      return this.albums;
     }
 }
