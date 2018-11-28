@@ -4,7 +4,12 @@
       <img class="card-img-top" [src]="album.images[0] && album.images[0].url" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title"> {{ album.name }} </h5>
-        <p class="card-text">Cośtam</p>
+        <p class="card-text">
+          <ng-container *ngFor="let artist of album.artists">
+            <p>{{ artist.name }}</p>
+
+          </ng-container>
+        </p>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     </div>

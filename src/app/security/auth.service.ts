@@ -28,16 +28,19 @@ export class AuthService {
         response_type
       }
     })
+    sessionStorage.removeItem('token');
     console.log(`${url}?${params.toString()}`);
     location.href = `${url}?${params.toString()}`;
   }
 
   getToken(){
+    this.token = JSON.parse(sessionStorage.getItem('token')!);
     if(!this.token && location.hash){
       const params = new HttpParams({
         fromString: location.hash
       });
       this.token = params.get('#access_token') || '';
+      sessionStorage.setItem('token', JSON.stringify(this.token));
     }
     if(!this.token){
       this.authorize();
