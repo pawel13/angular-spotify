@@ -32,14 +32,10 @@ export class MusicSearchService {
     ) { }
 
     getAlbums() {
-      return this.http.get<AlbumsResponse>(this.search_api_url, {
-        headers: {
-          Authorization: 'Bearer ' + this.auth.getToken()
-         },
+      return this.http.get<AlbumsResponse>(this.search_api_url,{
         params:{
           type: 'album',
           q: 'batman'
-
         }
         // observe: 'response',
         // reportProgress: true,
@@ -49,14 +45,7 @@ export class MusicSearchService {
       }).pipe(
         pluck<AlbumsResponse, Album[]>("albums","items")
           // map(resp => resp.albums.items)
-          , catchError((err,caught)=>{
-
-            if(err instanceof HttpErrorResponse && err.status == 401){
-              this.auth.authorize();
-            }
-            return throwError(new Error(err.error.error.message));
-          })
-        );
+      );
       
     }
 }
