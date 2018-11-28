@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { distinctUntilChanged, filter, throttle, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-form',
@@ -14,7 +15,16 @@ export class SearchFormComponent implements OnInit {
     this.queryForm = new FormGroup({
       query: new FormControl('batman')
     });
-    console.log(this.queryForm);
+    this.queryForm.get('query')!.valueChanges
+    .pipe(
+      debounceTime(400),
+      filter(query => query.length >= 3),
+      distinctUntilChanged(), // not the same value 
+    )
+    .subscribe(query => {
+      this.search(query)
+      // console.log(query);
+    });
   }
 
   ngOnInit() {
@@ -24,7 +34,6 @@ export class SearchFormComponent implements OnInit {
   queryChange = new EventEmitter<string>();
 
   search(value: string){
-    console.log(value);
     this.queryChange.emit(value);
   }
 
