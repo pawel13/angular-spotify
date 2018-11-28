@@ -49,9 +49,13 @@ export class MusicSearchService {
       }).pipe(
         pluck<AlbumsResponse, Album[]>("albums","items")
           // map(resp => resp.albums.items)
+          , catchError((err,caught)=>{
+            return empty();
+          })
         );
       
     }
 }
 
-import { map, pluck } from 'rxjs/operators'
+import { map, pluck, catchError } from 'rxjs/operators'
+import { empty } from 'rxjs';
