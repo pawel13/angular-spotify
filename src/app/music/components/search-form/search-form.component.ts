@@ -25,7 +25,7 @@ export class SearchFormComponent implements OnInit {
       (control:AbstractControl): Observable<ValidationErrors | null> => {
       
         return Observable.create((observer: Observer<ValidationErrors|null>) => {
-          setTimeout( () => {
+          const handler = setTimeout( () => {
             const hasError = (control.value as string).includes(badword);
             observer.next(
               hasError ? {
@@ -34,6 +34,10 @@ export class SearchFormComponent implements OnInit {
             );  
             observer.complete();
           }, 2000);
+          //on unsubsribe
+          return () => {
+            clearTimeout(handler);
+          }
         });
       };
 
@@ -49,13 +53,18 @@ export class SearchFormComponent implements OnInit {
       
       )
     });
-    this.queryForm.get('query')!.valueChanges
+    const value$ = this.queryForm.get('query')!.valueChanges
     .pipe(
       debounceTime(400),
-      filter(query => query.length >= 3),
       distinctUntilChanged(), // not the same value 
-    )
-    .subscribe(query => {
+      filter(query => query.length >= 3),
+    );
+
+    const valid$ = this.queryForm.get("query")
+      .statusChanges.pipe(filter(status => status === "VALID"));
+      
+    const search$ = value$;
+    search$.subscribe(query => {
       this.search(query)
       // console.log(query);
     });
