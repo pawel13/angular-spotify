@@ -1,7 +1,7 @@
 <div class="form-group mb-3" [formGroup]="queryForm">
   <input class="form-control" placeholder="Search" formControlName="query">
-  <!--<div *ngIf="queryForm.get('query') as field">-->
-    <div *ngIf="queryForm.get('query').hasError('required')">Field is required</div>
-    <div *ngIf="queryForm.get('query').getError('minlength') as error">Min. {{ error.requiredLength }} chars</div>
-  <!--</div>-->
+  <div *ngIf="queryForm.get('query') as field">
+    <div *ngIf="field.hasError('required')">Field is required</div>
+    <div *ngIf="field.getError('minlength') as error">Min. {{ error.requiredLength }} chars</div>
+  </div>
 </div>
