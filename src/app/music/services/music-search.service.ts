@@ -9,22 +9,7 @@ export const SEARCH_URL = new InjectionToken('Search API Url');
   providedIn: 'root'
 })
 export class MusicSearchService {
-  albums: Album[] = [
-    {
-      id: '123',
-      name: 'Album test',
-      images: [
-        { url: 'https://www.placecage.com/c/200/300' }
-      ]
-    },
-    {
-      id: '345',
-      name: 'Album test2',
-      images: [
-        { url: 'http://placekitten.com/200/300' }
-      ]
-    }
-  ];
+  albums: Album[] = [];
   constructor(
     @Inject(SEARCH_URL) private search_api_url: string,
     private http: HttpClient,
@@ -47,12 +32,15 @@ export class MusicSearchService {
       map(resp => resp.albums.items)
     ).subscribe(
       albums => {
-        this.albumsChange.emit(albums)
+        this.albumsChange.next(albums)
       }
     );
 
   }
-  albumsChange = new EventEmitter<Album[]>();
+
+  // albumsChange = new EventEmitter<Album[]>(true);
+  // albumsChange = new ReplaySubject<Album[]>(3);
+  albumsChange = new BehaviorSubject<Album[]>([]);
 
 
   getAlbums() {
@@ -62,5 +50,5 @@ export class MusicSearchService {
 }
 
 import { map, pluck, catchError, throwIfEmpty } from 'rxjs/operators'
-import { empty, throwError, of } from 'rxjs';
+import { empty, throwError, of, ReplaySubject, BehaviorSubject } from 'rxjs';
 

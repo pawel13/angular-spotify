@@ -32,7 +32,8 @@
             Welcome to {{ title }}!
           </h1>
 
-    <app-music-search></app-music-search>
+          <button (click)="hide = !hide">Toggle</button>
+    <app-music-search *ngIf="!hide"></app-music-search>
         </div> 
   
       </div> 
