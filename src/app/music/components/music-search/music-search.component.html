@@ -1,13 +1,16 @@
 <div class="row">
   <div class="col">
-      <app-search-form (queryChange)="search($event)">
-        </app-search-form>
+    <app-search-form (queryChange)="search($event)">
+    </app-search-form>
   </div>
 </div>
 <div class="row">
   <div class="col">
-      <app-albums-grid [albums]="albums$ | async">
-        </app-albums-grid>
+    <ng-container *ngIf="(albums$ | async) as albums">
+      <p> Found {{ albums.length}} results </p>
+
+      <app-albums-grid [albums]="albums">
+      </app-albums-grid>
+    </ng-container>
   </div>
 </div>
-
