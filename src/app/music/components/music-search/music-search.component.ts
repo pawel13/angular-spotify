@@ -13,6 +13,9 @@ export class MusicSearchComponent implements OnInit {
   albums: Album[];
   message: string;
 
+  
+  query$ = this.service.getQuery();
+  
   albums$ = this.service.getAlbums().pipe(
     tap(albums => {
       this.albums = albums;

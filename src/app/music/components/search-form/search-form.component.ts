@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { distinctUntilChanged, filter, throttle, debounceTime, withLatestFrom } from 'rxjs/operators';
 import { Observable, Observer } from 'rxjs';
@@ -10,6 +10,9 @@ import { Observable, Observer } from 'rxjs';
 })
 export class SearchFormComponent implements OnInit {
 
+  @Input()
+  query: string;
+  
   queryForm: FormGroup;
 
   constructor() { 

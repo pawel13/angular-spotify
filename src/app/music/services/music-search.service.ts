@@ -10,6 +10,14 @@ export const SEARCH_URL = new InjectionToken('Search API Url');
 })
 export class MusicSearchService {
   albums: Album[] = [];
+  
+  // albumsChange = new EventEmitter<Album[]>(true);
+  // albumsChange = new ReplaySubject<Album[]>(3);
+  albumsChange = new BehaviorSubject<Album[]>([]);
+  queryChange = new BehaviorSubject<string>('batman');
+
+
+
   constructor(
     @Inject(SEARCH_URL) private search_api_url: string,
     private http: HttpClient,
@@ -17,6 +25,7 @@ export class MusicSearchService {
   ) { }
 
   search(query: string): any {
+    this.queryChange.next(query);
     return this.http.get<AlbumsResponse>(this.search_api_url, {
       params: {
         type: 'album',
@@ -38,13 +47,13 @@ export class MusicSearchService {
 
   }
 
-  // albumsChange = new EventEmitter<Album[]>(true);
-  // albumsChange = new ReplaySubject<Album[]>(3);
-  albumsChange = new BehaviorSubject<Album[]>([]);
-
-
   getAlbums() {
     return this.albumsChange.asObservable();
+
+  }
+
+  getQuery() {
+    return this.queryChange.asObservable();
 
   }
 }
