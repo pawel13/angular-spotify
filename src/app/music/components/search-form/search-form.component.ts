@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { distinctUntilChanged, filter, throttle, debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -12,6 +12,14 @@ export class SearchFormComponent implements OnInit {
   queryForm: FormGroup;
 
   constructor() { 
+    const censor: ValidatorFn = (control:AbstractControl): ValidationErrors | null => {
+      const hasError = (control.value as string).includes('batman');
+      return hasError ? {
+        censor: 'batman'
+      } : null; // adds key to form error field
+    }
+
+
     this.queryForm = new FormGroup({
       query: new FormControl('', [ 
         Validators.required,
