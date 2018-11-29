@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from 'src/app/model/Album';
 import { MusicSearchService } from '../../services/music-search.service';
+import { tap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-music-search',
@@ -9,9 +10,14 @@ import { MusicSearchService } from '../../services/music-search.service';
 })
 export class MusicSearchComponent implements OnInit {
 
-  albums$ = this.service.getAlbums();
   albums: Album[];
   message: string;
+
+  albums$ = this.service.getAlbums().pipe(
+    tap(albums => {
+      this.albums = albums;
+    }), catchError( error => this.message = error.message)
+  );
 
   constructor(private service: MusicSearchService) { }
 
