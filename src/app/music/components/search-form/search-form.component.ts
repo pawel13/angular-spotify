@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl, AsyncValidatorFn } from '@angular/forms';
-import { distinctUntilChanged, filter, throttle, debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged, filter, throttle, debounceTime, withLatestFrom } from 'rxjs/operators';
 import { Observable, Observer } from 'rxjs';
 
 @Component({
@@ -62,8 +62,11 @@ export class SearchFormComponent implements OnInit {
 
     const valid$ = this.queryForm.get("query")
       .statusChanges.pipe(filter(status => status === "VALID"));
-      
-    const search$ = value$;
+
+    const search$ = valid$
+      .pipe(
+        withLatestFrom(value$, (valid, value) => value)
+      );
     search$.subscribe(query => {
       this.search(query)
       // console.log(query);
