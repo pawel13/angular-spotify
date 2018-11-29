@@ -9,7 +9,7 @@ import { AlbumsCardComponent } from './components/albums-card/albums-card.compon
 import { environment } from 'src/environments/environment';
 import { SEARCH_URL } from './services/music-search.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 
 @NgModule({
   declarations: [MusicSearchComponent, SearchFormComponent, AlbumsGridComponent, AlbumsCardComponent],

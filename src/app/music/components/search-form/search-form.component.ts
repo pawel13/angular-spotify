@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { distinctUntilChanged, filter, throttle, debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -13,7 +13,10 @@ export class SearchFormComponent implements OnInit {
 
   constructor() { 
     this.queryForm = new FormGroup({
-      query: new FormControl('batman')
+      query: new FormControl('', [ 
+        Validators.required,
+        Validators.minLength(3)
+      ])
     });
     this.queryForm.get('query')!.valueChanges
     .pipe(
