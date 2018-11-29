@@ -9,6 +9,7 @@ import { MusicSearchService } from '../../services/music-search.service';
 })
 export class MusicSearchComponent implements OnInit {
 
+  albums$ = this.service.getAlbums();
   albums: Album[];
   message: string;
 
