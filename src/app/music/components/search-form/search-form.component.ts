@@ -12,18 +12,20 @@ export class SearchFormComponent implements OnInit {
   queryForm: FormGroup;
 
   constructor() { 
-    const censor: ValidatorFn = (control:AbstractControl): ValidationErrors | null => {
-      const hasError = (control.value as string).includes('batman');
-      return hasError ? {
-        censor: 'batman'
+    const censor = (badword: string): ValidatorFn =>
+      (control:AbstractControl): ValidationErrors | null => {
+        const hasError = (control.value as string).includes(badword);
+        return hasError ? {
+        censor: { badword }
       } : null; // adds key to form error field
-    }
+    };
 
 
     this.queryForm = new FormGroup({
       query: new FormControl('', [ 
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        censor('batman')
       ])
     });
     this.queryForm.get('query')!.valueChanges

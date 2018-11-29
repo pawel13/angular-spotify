@@ -4,6 +4,8 @@
     <ng-container *ngIf="field.dirty || field.touched">
       <div *ngIf="field.hasError('required')">Field is required</div>
       <div *ngIf="field.getError('minlength') as error">Min. {{ error.requiredLength }} chars</div>
+      <div *ngIf="field.getError('censor') as error">Field cannot include {{ error.badword }}</div>
+    
     </ng-container>
   </ng-container>
 
